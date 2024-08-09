@@ -12,6 +12,18 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #Ensures snap binaries is added to env variables.
 export PATH=$PATH:/snap/bin
 
+# History settings
+export HISTFILE=~/.zsh_history
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+
+# saves every command before it is executed and 
+# reads the history file every time history is called upon
+setopt SHARE_HISTORY
+
+
+### List files and folders
+
 # Commands from https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e
 # ld — lists only directories (no files)
 alias ld='eza -lD'
