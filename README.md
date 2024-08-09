@@ -1,2 +1,8 @@
-# linux-config-files
-Config files for vim, i3wm and so on
+# dotfiles-hb
+
+note: I'm testing out [chezmoi](https://www.chezmoi.io/) to manage my dotfiles
+
+## Contents
+- zshrc config
+- Alacritty WSL config
+- Neovim config
