@@ -1,0 +1,35 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#Ensures snap binaries is added to env variables.
+export PATH=$PATH:/snap/bin
+
+# Commands from https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e
+# ld — lists only directories (no files)
+alias ld='eza -lD'
+# lf — lists only files (no directories)
+alias lf='eza -lF --color=always | grep -v /'
+# lh — lists only hidden files (no directories)
+alias lh='eza -dl .* --group-directories-first'
+# ll — lists everything with directories first
+alias ll='eza -al --group-directories-first'
+# ls — lists only files sorted by size
+alias ls='eza -alF --color=always --sort=size | grep -v /'
+# lt — lists everything sorted by time updated
+alias lt='eza -al --sort=modified'
+
+# enable vi mode in ZSH
+bindkey -v
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
