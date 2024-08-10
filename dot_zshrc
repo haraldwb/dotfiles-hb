@@ -29,6 +29,9 @@ alias gp='git pull'
 alias gs='git status'
 alias lg='lazygit'
 
+#chezmoi std dotfile dir
+alias cdchezmoi='cd ~/.local/share/chezmoi/'
+
 ### List files and folders
 
 # Commands from https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e
@@ -52,3 +55,5 @@ bindkey -v
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
