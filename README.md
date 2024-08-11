@@ -6,3 +6,4 @@ note: I'm testing out [chezmoi](https://www.chezmoi.io/) to manage my dotfiles
 - zshrc config
 - Alacritty WSL config
 - Neovim config
+- Tmux config
