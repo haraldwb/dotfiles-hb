@@ -7,9 +7,6 @@ fi
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-
-
-
 # Set the directory we want to store zinit and plugins
 #
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -24,14 +21,21 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
 # Load completions
 autoload -Uz compinit && compinit
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Keybindings
+# enable vi mode in ZSH
+bindkey -v
 
 #Ensures snap binaries is added to env variables.
 export PATH=$PATH:/snap/bin
@@ -44,6 +48,19 @@ export HISTSIZE=1000000000
 # saves every command before it is executed and 
 # reads the history file every time history is called upon
 setopt SHARE_HISTORY
+
+# Completion styling
+
+# Completion styling
+# make completions case-insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+
 
 ## Aliases
 
@@ -72,11 +89,6 @@ alias ls='eza -alF --color=always --sort=size | grep -v /'
 # lt — lists everything sorted by time updated
 alias lt='eza -al --sort=modified'
 
-# enable vi mode in ZSH
-bindkey -v
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
+# Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
