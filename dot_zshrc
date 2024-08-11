@@ -7,6 +7,24 @@ fi
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
+
+
+
+# Set the directory we want to store zinit and plugins
+#
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Add in Powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #Ensures snap binaries is added to env variables.
@@ -37,6 +55,7 @@ alias cdchezmoi='cd ~/.local/share/chezmoi/'
 # Commands from https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e
 # ld — lists only directories (no files)
 alias ld='eza -lD'
+
 # lf — lists only files (no directories)
 # omitted as it blocks lf file manager
 #alias lf='eza -lF --color=always | grep -v /'
