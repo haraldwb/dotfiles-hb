@@ -25,7 +25,13 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+
+# Load completions
+autoload -Uz compinit && compinit
 
 #Ensures snap binaries is added to env variables.
 export PATH=$PATH:/snap/bin
@@ -38,7 +44,6 @@ export HISTSIZE=1000000000
 # saves every command before it is executed and 
 # reads the history file every time history is called upon
 setopt SHARE_HISTORY
-
 
 ## Aliases
 
@@ -55,7 +60,6 @@ alias cdchezmoi='cd ~/.local/share/chezmoi/'
 # Commands from https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e
 # ld — lists only directories (no files)
 alias ld='eza -lD'
-
 # lf — lists only files (no directories)
 # omitted as it blocks lf file manager
 #alias lf='eza -lF --color=always | grep -v /'
@@ -74,6 +78,5 @@ bindkey -v
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
