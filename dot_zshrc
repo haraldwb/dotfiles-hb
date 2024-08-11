@@ -38,7 +38,8 @@ alias cdchezmoi='cd ~/.local/share/chezmoi/'
 # ld — lists only directories (no files)
 alias ld='eza -lD'
 # lf — lists only files (no directories)
-alias lf='eza -lF --color=always | grep -v /'
+# omitted as it blocks lf file manager
+#alias lf='eza -lF --color=always | grep -v /'
 # lh — lists only hidden files (no directories)
 alias lh='eza -dl .* --group-directories-first'
 # ll — lists everything with directories first
