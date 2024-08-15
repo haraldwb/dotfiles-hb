@@ -1,6 +1,6 @@
-#[shell]
-#args = ["--cd ~"]
-#program = 'C:\Windows\System32\wsl.exe'
+[shell]
+args = ["--cd ~"]
+program = 'C:\Windows\System32\wsl.exe'
 
 [font]
 size = 12.0
