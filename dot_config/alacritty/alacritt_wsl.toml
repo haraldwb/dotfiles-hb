@@ -16,3 +16,24 @@ family = "JetBrainsMono NF"
 
 [font.bold_italic]
 family = "JetBrainsMono NF"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key    = "PageUp"
+mods   = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key    = "PageDown"
+mods   = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToTop"
+key    = "Home"
+mods   = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key    = "End"
+mods   = "Shift"
+
