@@ -38,6 +38,10 @@ bindkey -v
 #Ensures snap binaries is added to env variables.
 export PATH=$PATH:/snap/bin
 
+#Ensures go variables are set
+export GOPATH="$HOME/go/"
+export PATH=$PATH:$GOPATH/bin
+
 # History settings
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=1000000000
