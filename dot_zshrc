@@ -42,6 +42,9 @@ export PATH=$PATH:/snap/bin
 export GOPATH="$HOME/go/"
 export PATH=$PATH:$GOPATH/bin
 
+export RUSTPATH="$HOME/.cargo/bin"
+export PATH=$PATH:$RUSTPATH
+
 # History settings
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=1000000000
