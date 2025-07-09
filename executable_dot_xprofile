@@ -1,0 +1,2 @@
+# swap Caps and Esc
+setxkbmap -option caps:swapescape
