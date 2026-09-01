@@ -45,10 +45,19 @@ export PATH=$PATH:$GOPATH/bin
 export RUSTPATH="$HOME/.cargo/bin"
 export PATH=$PATH:$RUSTPATH
 
+#ensure local binaries are added to path
+export PATH="$HOME/.local/bin:$PATH"
+
+
 # History settings
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
+
+# SAVEHIST is zsh's on-disk history cap. It defaults to 0, which means zsh
+# writes NOTHING to HISTFILE. HISTFILESIZE above is a bash variable and is
+# ignored by zsh, so it never served this purpose.
+SAVEHIST=200000
 
 # saves every command before it is executed and 
 # reads the history file every time history is called upon
@@ -76,6 +85,9 @@ alias lg='lazygit'
 
 #chezmoi std dotfile dir
 alias cdchezmoi='cd ~/.local/share/chezmoi/'
+# Edit a chezmoi-managed file at its SOURCE and apply immediately, so the
+# live file and the repo cannot drift apart.  Usage: cme ~/.zshrc
+cme() { chezmoi edit --apply "$@"; }
 
 ### List files and folders
 
@@ -97,3 +109,12 @@ alias lt='eza -al --sort=modified'
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(uv generate-shell-completion zsh)"
+eval "$(zoxide init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# opencode
+export PATH=/home/hb/.opencode/bin:$PATH
