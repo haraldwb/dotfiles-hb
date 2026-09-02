@@ -103,8 +103,12 @@ alias lh='eza -dl .* --group-directories-first'
 alias ll='eza -al --group-directories-first'
 # ls — drop-in eza replacement; args/paths pass through, directories first
 alias ls='eza -alF --color=always --group-directories-first'
-# lsf — lists only files (no directories), sorted by size
-lsf() { eza -alF --color=always --sort=size "$@" | grep -v '/$'; }
+# lsf — lists only files (no directories), sorted by size.
+# Uses eza's own filter: piping into `grep -v '/$'` did nothing, because
+# eza only appends the classify suffix when stdout is a terminal.
+# --show-symlinks keeps symlinks that point at files; eza still excludes
+# ones pointing at directories, which is what "no directories" should mean.
+lsf() { eza -al --only-files --show-symlinks --sort=size --color=always "$@"; }
 # lt — lists everything sorted by time updated
 alias lt='eza -al --sort=modified'
 
