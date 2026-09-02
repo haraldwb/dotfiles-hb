@@ -120,7 +120,3 @@ export NVM_DIR="$HOME/.nvm"
 
 # opencode
 export PATH=/home/hb/.opencode/bin:$PATH
-
-# Machine-local overrides: PII-bearing paths, work vars, secrets.
-# Untracked on purpose — see ~/.config/zsh/local.zsh. Kept last so it can override.
-[[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh

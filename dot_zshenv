@@ -1,0 +1,9 @@
+# Read by EVERY zsh invocation, interactive or not — unlike .zshrc, which
+# interactive shells alone read. Machine-local values belong here so that
+# scripts, cron jobs and agent tool-calls see them too.
+#
+# ~/.config/zsh/local.zsh is mode 600, untracked, and outside every git
+# tree: it holds values that must not be published (paths embedding my
+# name or employer, work vars, tokens). Only this generic guard is
+# committed. Keep it fast and silent — every zsh start pays for it.
+[[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh
