@@ -6,4 +6,9 @@
 # tree: it holds values that must not be published (paths embedding my
 # name or employer, work vars, tokens). Only this generic guard is
 # committed. Keep it fast and silent — every zsh start pays for it.
-[[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh
+# An if-block rather than `&&`: as the last line of .zshenv, a false `&&`
+# would leave every shell starting at $? = 1 on machines without the file.
+# A genuine error inside local.zsh still surfaces.
+if [[ -f ~/.config/zsh/local.zsh ]]; then
+  source ~/.config/zsh/local.zsh
+fi
