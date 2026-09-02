@@ -51,19 +51,15 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # History settings
 export HISTFILE=~/.zsh_history
-export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
 
 # SAVEHIST is zsh's on-disk history cap. It defaults to 0, which means zsh
-# writes NOTHING to HISTFILE. HISTFILESIZE above is a bash variable and is
-# ignored by zsh, so it never served this purpose.
+# writes NOTHING to HISTFILE.
 SAVEHIST=200000
 
 # saves every command before it is executed and 
 # reads the history file every time history is called upon
 setopt SHARE_HISTORY
-
-# Completion styling
 
 # Completion styling
 # make completions case-insensitive
@@ -94,9 +90,6 @@ cme() { chezmoi edit --apply "$@"; }
 # Commands from https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e
 # ld — lists only directories (no files)
 alias ld='eza -lD'
-# lf — lists only files (no directories)
-# omitted as it blocks lf file manager
-#alias lf='eza -lF --color=always | grep -v /'
 # lh — lists only hidden files (no directories)
 alias lh='eza -dl .* --group-directories-first'
 # ll — lists everything with directories first
@@ -104,6 +97,7 @@ alias ll='eza -al --group-directories-first'
 # ls — drop-in eza replacement; args/paths pass through, directories first
 alias ls='eza -alF --color=always --group-directories-first'
 # lsf — lists only files (no directories), sorted by size.
+# Named lsf, not lf, which would shadow the lf file manager.
 # Uses eza's own filter: piping into `grep -v '/$'` did nothing, because
 # eza only appends the classify suffix when stdout is a terminal.
 # --show-symlinks keeps symlinks that point at files; eza still excludes
@@ -115,12 +109,14 @@ alias lt='eza -al --sort=modified'
 
 # Set up fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(uv generate-shell-completion zsh)"
-eval "$(zoxide init zsh)"
+# Guarded: these are not installed on every machine, and an unguarded
+# eval prints "command not found" on every interactive shell there.
+command -v uv     >/dev/null && eval "$(uv generate-shell-completion zsh)"
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # opencode
-export PATH=/home/hb/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
