@@ -1,3 +1,18 @@
 # Paths chezmoi should not manage. Target-relative patterns.
+# This file is always treated as a template.
 
 .config/nvim/lazyvim.json
+
+{{ if contains "microsoft" (lower .chezmoi.kernel.osrelease) -}}
+# --- on WSL ---
+# setxkbmap is not installed under WSL and there is no X login that reads
+# .xprofile, so it would be a dead file here. Still applies on omarchy.
+.xprofile
+{{- else -}}
+# --- everywhere except WSL ---
+# tmux/local.conf is a WSL/WezTerm terminal-feature shim. Claiming extkeys
+# for xterm-256color on a terminal without CSI-u support would break
+# extended keys, so keep it off other machines. tmux.conf pulls it in with
+# `source-file -q`, which tolerates its absence.
+.config/tmux/local.conf
+{{- end }}
