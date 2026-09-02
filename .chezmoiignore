@@ -3,6 +3,10 @@
 
 .config/nvim/lazyvim.json
 
+# This repo's own README documents the repo; it is not a dotfile and does
+# not belong in $HOME.
+README.md
+
 {{ if contains "microsoft" (lower .chezmoi.kernel.osrelease) -}}
 # --- on WSL ---
 # setxkbmap is not installed under WSL and there is no X login that reads
